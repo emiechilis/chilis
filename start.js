@@ -64,12 +64,7 @@
 		/*** Startup ***/
 		case(a){this.eval(a.go, a.class, a)},
 		else(a){this.eval(a.go.all, a.class.all)},
-		eval(a, b, x){
-			console.log(b);
-			go = eval(atob(a));
-			/******** temporary offline solution **********/
-			this.tag(`/class.js`).onload = () => go.continue(x);
-		},
+		eval(a, b, x){go = eval(atob(a)); this.tag(b).onload = () => go.continue(x)},
 		/*** End Startup ***/
 		
 		/*** Device ***/
