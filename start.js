@@ -2,7 +2,7 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.06.16
+ * Version: 22.07.22
  * Developed by Emie Chilis
 *************************/
 	z = (a) => {return a[a.length - 1]};
@@ -13,59 +13,67 @@
 	start = {
 		/*** Universal ***/
 		key(a){return Object.keys(a)},
+		enum(a){return a[Math.random() * a.length | 0]},
+		json(a, b){return JSON[b ? `parse` : `stringify`](a)},
 		nod(a, b = __(`div`)){b.innerHTML = a; return b.firstChild},
 		tag(a, b = __(`script`)){b.async = !1; b.src = a; $(`body`).append(b); return b},
 		mix(a, b){return Array.isArray(a) || Array.isArray(b) ? a.concat(b) : {...a, ...b}},
 		for(a, b){(Array.isArray(a) ? a : this.key(a)).map(e => Array.isArray(a) ? b(e) : b(e, a[e]))},
+		newOBJ(a, b, x, y = this.json(a)){setInterval(e => {x = this.json(a); y !== x && (b(this.json(y = x, 1)))}, 1e3)},
 		/*** End Universal ***/
-		
-		/*** Temporary ***/
-		byte(a){console.log(a)},
-		void(a){$(`body`).append(this.xml(a))},
-		get(){go.upload(`text/javascript`).go(e => this.setBOX(e.file))},
-		setURL(a, b){go.web(`system`).url(`class`).then(e => console.log(e)).catch(e => console.log(e))},
-		xml(a){return this.nod(`<strong style="font-size:90px; background: #ffe2e2; margin: 20px;">${a}</strong>`)},
-		setBOX(a, b){go.web(`system`).box({doc: `class`, var: a, byte: this.byte}).then(e => this.setURL(e, b)).catch(e => console.log(e))},
-		devs(a){this.for([`svg`, `class`, `go`], e => this.tag(`${e}.js`).onload = e => `go.js` == z(e.composedPath()[0].src.split(`/`)) && go.continue(a))},
-		/*** End Temporary ***/
 		
 		/*** Firebase ***/
 		fire: `8.10.1`,
-		200(a){this.of(a, this.if(a)) && this.do(a)},
 		let: [`app`, `init`, `auth`, `storage`, `firestore`, `functions`],
 		of(a, b){return a == `app` || a == `init` ? window[b] : firebase[b]()},
 		if(a){return a == `init` ? `firebaseConfig` : a == `app` ? `firebase` : a},
+		200(a, b = this.if(a)){b != `firebaseConfig` && this.of(a, b) && this.do(a)},
 		do(a){(this.int -= 1) == 0 && this.device.go(e => this.test(this.mix(e, this.device.data())))},
 		link(a, b){return a == `init` ? `/__/${b}/${a}.js?useEmulator=true` : `/__/${b}/${this.fire}/${b}-${a}.js`},
-		go(){this.int = 6; this.for(this.let, e => this.tag(this.link(e, `firebase`)).onload = () => this[2e2](e))},
 		call(a, b, x = firebase.functions().httpsCallable(a[0])){return x(a[1]).then(e => b(e.data)).catch(e => console.log(e))},
+		go(){this.int = 5; $(`body`).innerHTML = this.style.xml(); this.for(this.let, e => this.tag(this.link(e, `firebase`)).onload = () => this[2e2](e))},
 		/*** End Firebase ***/
 		
-		/*** Testing ***/
-		type: [`Win32`, `Mac68K`, `MacPPC`, `MacIntel`, `iPod`],
-		null(a, b){return [b.maxTouchPoints > 1, this.mode(a, `portrait`, window), this.type.indexOf(a) < 0]},
-		mode(a, b, x){return a == `iPhone` ? x.matchMedia(`(orientation: ${b})`).matches : x.screen.orientation.type === `${b}-primary`},
-		
-		test(a, b = true){			
-			this.var = a;
-			`serial` in navigator && (b = !1);
-			z(a.screen.width) >= 760 && (b = !1);
-			this.for(this.null(a.device.platform, navigator), e => !e && (b = !1));
-			!b ? navigator.onLine ? this.sign(a) : this.idb.open(`code`, !1, e => this.else(e)) : this.void(`no access!`);
-		},
-		/*** End Testing ***/
-		
-		/*** Login ***/
-		user(a){this.call([`user`, a], e => this.case(e))},
-		sign(a){firebase.auth().signInAnonymously().then(e => this.user(this.mix(a, this.all(e.user)))).catch(e => console.log(e))},
-		all(a){return {id: a.uid, email: a.email, photo: a.photoURL, time: eval(a.metadata.a), name: a.displayName, phone: a.phoneNumber, anonymous: a.isAnonymous, verified: a.emailVerified}},
-		/*** End Login ***/
+		/*** Signin ***/
+		await(a, b, x){x ? this.user(a, x) : this.anonymous(a, b)},
+		account(a, b, x){!x.slot && x.anonymous ? this.cloud(a, b) : this.offline()},
+		cloud(a, b){this.call([`user`, this.mix(a, this.all(b))], e => this.case(e))},
+		event(a, b = firebase.auth()){this.reset = b.onAuthStateChanged(e => a(b, e))},
+		oldUSER(a, b){this.open(`mine`, !1, e => e ? this.account(a, b, e[this.key(e)[0]]) : this.cloud(a, b))},
+		anonymous(a, b){return b.signInAnonymously().then(e => this.user(a, e.user)).catch(e => console.log(e))},
+		user(a, b){this.reset(); indexedDB.databases().then(e => e.length <= 1 ? this.cloud(a, b) : this.oldUSER(a, b)).catch(e => console.log(e))},
+		all(a, b){return {id: a.uid, email: a.email, picture: a.photoURL, time: eval(a.metadata.a), name: a.displayName, phone: a.phoneNumber, anonymous: a.isAnonymous, verified: a.emailVerified}},
+		/*** End Signin ***/
 		
 		/*** Startup ***/
 		case(a){this.eval(a.go, a.class, a)},
 		else(a){this.eval(a.go.all, a.class.all)},
+		offline(){this.open(`code`, !1, e => this.else(e))},
 		eval(a, b, x){go = eval(atob(a)); this.tag(b).onload = () => go.continue(x)},
 		/*** End Startup ***/
+		
+		/*** Testing ***/
+		type: [`Win32`, `Mac68K`, `MacPPC`, `MacIntel`, `iPod`],
+		void(a, b = $(`body`)){b.innerHTML = ``; b.append(this.xml(a))},
+		null(a, b){return [b.maxTouchPoints > 1, this.mode(a, `portrait`, window), this.type.indexOf(a) < 0]},
+		xml(a){return this.nod(`<strong style="font-size:90px; background: #ffe2e2; margin: 20px;">${a}</strong>`)},
+		mode(a, b, x){return a == `iPhone` ? x.matchMedia(`(orientation: ${b})`).matches : x.screen.orientation.type === `${b}-primary`},
+		
+		test(a, b = true){
+			this.var = a;
+			`serial` in navigator && (b = !1);
+			z(a.screen.width) >= 760 && (b = !1);
+			this.for(this.null(a.device.platform, navigator), e => !e && (b = !1));
+			(location.hostname == `localhost` ? true : b) ? navigator.onLine ? this.event((x, y) => this.await(a, x, y)) : this.offline() : this.void(`no access!`);
+		},
+		
+		style: {
+			box: `width: 50%; height: 40%; position: relative; margin: auto; filter: drop-shadow(1px 0 2px black);`,
+			top: `background: #3d3f42; width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex;`,
+			xml(){return`<div id="splashscreen" style="${this.top}"><div style="${this.box}"><svg viewBox="0 0 40 40">${this.svg}</svg></div></div>`},
+			svg: `<path fill="#92c8ff" d="M30.9 23.9c-.3-.5-.5-1-.8-1.5-.6-1.1-1.2-2.3-1.8-3.4-.4-.8-1-1.2-1.9-1.2h-5.5c-.7 0-1.2.3-1.5.9l-3 5.7c-.3.6-.3 1.3 0 1.9 1 1.9 2 3.8 2.9 5.7.1.1.1.2.2.4h-4.3c-1.2 0-2-.5-2.6-1.5-.9-1.7-1.8-3.4-2.7-5.2-.7-1.3-1.4-2.7-2.1-4-.6-1.2-.6-2.3 0-3.5 1.6-3 3.2-6.1 4.7-9.1C13 8 13.8 7.5 15 7.5h9.3c1.2 0 2.1.5 2.6 1.6l4.8 9.3c.6 1.1.6 2.2 0 3.2 0 .8-.4 1.5-.8 2.3z"/><path fill="#f3d5a4" d="M19.8 26.8c-.2.4-.2.9 0 1.3.6 1.3 1.3 2.5 2 3.8.2.4.6.6 1.1.6H26.7c.5 0 .8-.2 1-.6.6-1.2 1.3-2.5 1.9-3.7.3-.5.3-1 0-1.4-.3-.5-.6-1.1-.8-1.6-.4-.7-.7-1.4-1.1-2.1-.2-.4-.6-.6-1-.6h-1.6-.1c0 .1.1.1.1.2.4.8.8 1.5 1.2 2.3.1.3.1.5 0 .8-.4.8-.8 1.6-1.2 2.3-.1.2-.3.4-.6.4h-2.3c-.4 0-.6-.2-.8-.5-.2-.5-.5-.9-.7-1.4l-.3-.6c-.2.1-.4.5-.6.8z"/>`,
+		},
+		/*** End Testing ***/
 		
 		/*** Device ***/
 		device: {
@@ -74,7 +82,6 @@
 			data(a = window, b = navigator, x = a.screen, y = a.performance, z = y.memory, i = a.visualViewport){
 				return {
 					app: location.hostname,
-					box: [`apps`, `card`, `chat`, `code`, `data`, `hive`, `user`, `text`, `own`],
 					script: {used: z.usedJSHeapSize, limit: z.jsHeapSizeLimit, total: z.totalJSHeapSize},
 					online: {live: b.onLine, ping: b.connection.rtt, speed: b.connection.downlink, type: b.connection.effectiveType},
 					screen: {scale: i.scale, width: [a.innerWidth, i.width, x.width], height: [a.innerHeight, i.height, x.height], top: x.availTop, color: x.colorDepth, pixel: x.pixelDepth, way: x.orientation.type},
@@ -84,18 +91,12 @@
 		},
 		/*** End Device ***/
 		
-		/*** IndexedDB ***/
-		idb: {
-			idb(a, b, x, y = {key: a.key, map: a.value, out: !1}){b && b(y); x.new[y.key] = y.map; y.out ? x.new[y.key].delete = true : !1; (y.out ? a.delete() : a.update(y.map)).onsuccess = e => {x.data = x.new}; a.continue()},
-			open(a, b, x, y = indexedDB.open(location.hostname), i){
-				y.onsuccess = e => {
-					this.new = {};
-					(i = e.target.result[`transaction`](a, `readwrite`).objectStore(a)).openCursor().onsuccess = e => e.target.result ? this.idb(e.target.result, b, this) : !1;
-					i[`transaction`].oncomplete = e => x && x(e.data = this.data);
-				};
-			},
-		},
-		/*** End IndexedDB ***/
+		/*** indexedDB ***/
+		focus(a, b){return b.openCursor().onsuccess = (_, e = _.target.result) => e && this.self(a, e)},
+		status(a, b, x){this.focus(a, x, this.new = {}); x[`transaction`].oncomplete = e => b && b(e.data = this.data)},
+		open(a, b, x, y){indexedDB.open(location.hostname).onsuccess = e => this.status(b, x, y = e.target.result[`transaction`](a, `readwrite`).objectStore(a))},
+		self(a, b, x = {key: b.key, map: b.value, out: !1}){a && a(y); this.new[x.key] = x.map; x.out && (this.new[x.key].delete = true); (x.out ? b.delete() : b.update(x.map)).onsuccess = e => {this.data = this.new}; b.continue()},
+		/*** End indexedDB ***/
 	};
 	
 	start.go();
@@ -103,6 +104,6 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.06.16
+ * Version: 22.07.22
  * Developed by Emie Chilis
 *************************/
