@@ -2,7 +2,7 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.07.22
+ * Version: 22.07.23
  * Developed by Emie Chilis
 *************************/
 	z = (a) => {return a[a.length - 1]};
@@ -31,8 +31,20 @@
 		do(a){(this.int -= 1) == 0 && this.device.go(e => this.test(this.mix(e, this.device.data())))},
 		link(a, b){return a == `init` ? `/__/${b}/${a}.js?useEmulator=true` : `/__/${b}/${this.fire}/${b}-${a}.js`},
 		call(a, b, x = firebase.functions().httpsCallable(a[0])){return x(a[1]).then(e => b(e.data)).catch(e => console.log(e))},
-		go(){this.int = 5; $(`body`).innerHTML = this.style.xml(); this.for(this.let, e => this.tag(this.link(e, `firebase`)).onload = () => this[2e2](e))},
+		go(){this.int = 5; this.metatag(this.style); this.for(this.let, e => this.tag(this.link(e, `firebase`)).onload = () => this[2e2](e))},
 		/*** End Firebase ***/
+		
+		/*** Styler ***/
+		metatag(a){$(`head`).append(go.nod(`<meta ${a.view}></meta>`)); $(`body`).innerHTML = a.xml()},
+		
+		style: {
+			box: `width: 50%; height: 50%; position: relative; margin: auto; filter: drop-shadow(1px 0 2px black);`,
+			top: `background: #3d3f42; width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex;`,
+			view: `name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"`,
+			xml(){return`<div id="splashscreen" style="${this.top}"><div style="${this.box}"><svg viewBox="0 0 40 40">${this.svg}</svg></div><span></span></div>`},
+			svg: `<path fill="#92c8ff" d="M30.9 23.9c-.3-.5-.5-1-.8-1.5-.6-1.1-1.2-2.3-1.8-3.4-.4-.8-1-1.2-1.9-1.2h-5.5c-.7 0-1.2.3-1.5.9l-3 5.7c-.3.6-.3 1.3 0 1.9 1 1.9 2 3.8 2.9 5.7.1.1.1.2.2.4h-4.3c-1.2 0-2-.5-2.6-1.5-.9-1.7-1.8-3.4-2.7-5.2-.7-1.3-1.4-2.7-2.1-4-.6-1.2-.6-2.3 0-3.5 1.6-3 3.2-6.1 4.7-9.1C13 8 13.8 7.5 15 7.5h9.3c1.2 0 2.1.5 2.6 1.6l4.8 9.3c.6 1.1.6 2.2 0 3.2 0 .8-.4 1.5-.8 2.3z"/><path fill="#f3d5a4" d="M19.8 26.8c-.2.4-.2.9 0 1.3.6 1.3 1.3 2.5 2 3.8.2.4.6.6 1.1.6H26.7c.5 0 .8-.2 1-.6.6-1.2 1.3-2.5 1.9-3.7.3-.5.3-1 0-1.4-.3-.5-.6-1.1-.8-1.6-.4-.7-.7-1.4-1.1-2.1-.2-.4-.6-.6-1-.6h-1.6-.1c0 .1.1.1.1.2.4.8.8 1.5 1.2 2.3.1.3.1.5 0 .8-.4.8-.8 1.6-1.2 2.3-.1.2-.3.4-.6.4h-2.3c-.4 0-.6-.2-.8-.5-.2-.5-.5-.9-.7-1.4l-.3-.6c-.2.1-.4.5-.6.8z"/>`,
+		},
+		/*** End Styler ***/
 		
 		/*** Signin ***/
 		await(a, b, x){x ? this.user(a, x) : this.anonymous(a, b)},
@@ -66,13 +78,6 @@
 			this.for(this.null(a.device.platform, navigator), e => !e && (b = !1));
 			(location.hostname == `localhost` ? true : b) ? navigator.onLine ? this.event((x, y) => this.await(a, x, y)) : this.offline() : this.void(`no access!`);
 		},
-		
-		style: {
-			box: `width: 50%; height: 40%; position: relative; margin: auto; filter: drop-shadow(1px 0 2px black);`,
-			top: `background: #3d3f42; width: 100%; height: 100%; position: absolute; top: 0; left: 0; display: flex;`,
-			xml(){return`<div id="splashscreen" style="${this.top}"><div style="${this.box}"><svg viewBox="0 0 40 40">${this.svg}</svg></div></div>`},
-			svg: `<path fill="#92c8ff" d="M30.9 23.9c-.3-.5-.5-1-.8-1.5-.6-1.1-1.2-2.3-1.8-3.4-.4-.8-1-1.2-1.9-1.2h-5.5c-.7 0-1.2.3-1.5.9l-3 5.7c-.3.6-.3 1.3 0 1.9 1 1.9 2 3.8 2.9 5.7.1.1.1.2.2.4h-4.3c-1.2 0-2-.5-2.6-1.5-.9-1.7-1.8-3.4-2.7-5.2-.7-1.3-1.4-2.7-2.1-4-.6-1.2-.6-2.3 0-3.5 1.6-3 3.2-6.1 4.7-9.1C13 8 13.8 7.5 15 7.5h9.3c1.2 0 2.1.5 2.6 1.6l4.8 9.3c.6 1.1.6 2.2 0 3.2 0 .8-.4 1.5-.8 2.3z"/><path fill="#f3d5a4" d="M19.8 26.8c-.2.4-.2.9 0 1.3.6 1.3 1.3 2.5 2 3.8.2.4.6.6 1.1.6H26.7c.5 0 .8-.2 1-.6.6-1.2 1.3-2.5 1.9-3.7.3-.5.3-1 0-1.4-.3-.5-.6-1.1-.8-1.6-.4-.7-.7-1.4-1.1-2.1-.2-.4-.6-.6-1-.6h-1.6-.1c0 .1.1.1.1.2.4.8.8 1.5 1.2 2.3.1.3.1.5 0 .8-.4.8-.8 1.6-1.2 2.3-.1.2-.3.4-.6.4h-2.3c-.4 0-.6-.2-.8-.5-.2-.5-.5-.9-.7-1.4l-.3-.6c-.2.1-.4.5-.6.8z"/>`,
-		},
 		/*** End Testing ***/
 		
 		/*** Device ***/
@@ -104,6 +109,6 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.07.22
+ * Version: 22.07.23
  * Developed by Emie Chilis
 *************************/
