@@ -35,7 +35,7 @@
 		/*** End Firebase ***/
 		
 		/*** Styler ***/
-		metatag(a){$(`head`).append(go.nod(`<meta ${a.view}></meta>`)); $(`body`).innerHTML = a.xml()},
+		metatag(a){$(`head`).append(this.nod(`<meta ${a.view}></meta>`)); $(`body`).innerHTML = a.xml()},
 		
 		style: {
 			box: `width: 50%; height: 50%; position: relative; margin: auto; filter: drop-shadow(1px 0 2px black);`,
