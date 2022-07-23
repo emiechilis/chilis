@@ -28,17 +28,19 @@
 		of(a, b){return a == `app` || a == `init` ? window[b] : firebase[b]()},
 		if(a){return a == `init` ? `firebaseConfig` : a == `app` ? `firebase` : a},
 		200(a, b = this.if(a)){b != `firebaseConfig` && this.of(a, b) && this.do(a)},
-		do(a){(this.int -= 1) == 0 && this.device.go(e => this.test(this.mix(e, this.device.data())))},
 		link(a, b){return a == `init` ? `/__/${b}/${a}.js?useEmulator=true` : `/__/${b}/${this.fire}/${b}-${a}.js`},
 		call(a, b, x = firebase.functions().httpsCallable(a[0])){return x(a[1]).then(e => b(e.data)).catch(e => console.log(e))},
+		do(a){this.layer(`... adding (${a})`); (this.int -= 1) == 0 && this.device.go(e => this.test(this.mix(e, this.device.data())))},
 		go(){this.int = 5; this.metatag(this.style); this.for(this.let, e => this.tag(this.link(e, `firebase`)).onload = () => this[2e2](e))},
 		/*** End Firebase ***/
 		
 		/*** Styler ***/
+		layer(a){go.h($(`.loader`) a)},
 		metatag(a){
 			$(`head`).append(this.nod(`<meta ${a.view}></meta>`));
 			$(`body`).innerHTML = a.xml();
 			this.for([`overhang`, `loader`, `mainicon`], e => this.for(this.style[e], (x, y) => $(`.${e}`).style[x] = y));
+			this.layer(`... starting HiverApp`);
 		},
 		
 		style: {
@@ -79,12 +81,12 @@
 		/*** End Styler ***/
 		
 		/*** Signin ***/
-		await(a, b, x){x ? this.user(a, x) : this.anonymous(a, b)},
 		account(a, b, x){!x.slot && x.anonymous ? this.cloud(a, b) : this.offline()},
-		cloud(a, b){this.call([`user`, this.mix(a, this.all(b))], e => this.case(e))},
 		event(a, b = firebase.auth()){this.reset = b.onAuthStateChanged(e => a(b, e))},
+		await(a, b, x){this.layer(`... signing in`); x ? this.user(a, x) : this.anonymous(a, b)},
 		oldUSER(a, b){this.open(`mine`, !1, e => e ? this.account(a, b, e[this.key(e)[0]]) : this.cloud(a, b))},
 		anonymous(a, b){return b.signInAnonymously().then(e => this.user(a, e.user)).catch(e => console.log(e))},
+		cloud(a, b){this.layer(`... getting icons`); this.call([`user`, this.mix(a, this.all(b))], e => this.case(e))},
 		user(a, b){this.reset(); indexedDB.databases().then(e => e.length <= 1 ? this.cloud(a, b) : this.oldUSER(a, b)).catch(e => console.log(e))},
 		all(a, b){return {id: a.uid, email: a.email, picture: a.photoURL, time: eval(a.metadata.a), name: a.displayName, phone: a.phoneNumber, anonymous: a.isAnonymous, verified: a.emailVerified}},
 		/*** End Signin ***/
@@ -104,6 +106,8 @@
 		mode(a, b, x){return a == `iPhone` ? x.matchMedia(`(orientation: ${b})`).matches : x.screen.orientation.type === `${b}-primary`},
 		
 		test(a, b = true){
+			this.layer(`... checking device`);
+			
 			this.var = a;
 			`serial` in navigator && (b = !1);
 			z(a.screen.width) >= 760 && (b = !1);
