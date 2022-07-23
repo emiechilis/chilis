@@ -35,7 +35,7 @@
 		/*** End Firebase ***/
 		
 		/*** Styler ***/
-		layer(a){go.h($(`.loader`) a)},
+		layer(a){return go.h($(`.loader`), a)},
 		metatag(a){
 			$(`head`).append(this.nod(`<meta ${a.view}></meta>`));
 			$(`body`).innerHTML = a.xml();
