@@ -62,7 +62,7 @@
 				textTransform: 'capitalize',
 			},
 			
-			splashscreen: {
+			overhang: {
 				top: '0',
 				left: '0',
 				width: '100%',
