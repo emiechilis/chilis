@@ -2,7 +2,7 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.07.25
+ * Version: 22.07.28
  * Developed by Emie Chilis
 *************************/
 	z = (a) => {return a[a.length - 1]};
@@ -107,20 +107,22 @@
 		/*** End Startup ***/
 		
 		/*** Testing ***/
-		type: [`Win32`, `Mac68K`, `MacPPC`, `MacIntel`, `iPod`],
+		type: [`Win32`, `Mac68K`, `MacPPC`, `MacIntel`],
 		void(a, b = $(`body`)){b.innerHTML = ``; b.append(this.xml(a))},
-		null(a, b){return [b.maxTouchPoints > 1, this.mode(a, `portrait`, window), this.type.indexOf(a) < 0]},
+		iOS(a = navigator){return /iPad|iPhone|iPod/.test(a.platform || a.userAgent)},
+		null(a, b){return [a.maxTouchPoints > 1, this.way(), this.type.indexOf(b) < 0]},
 		xml(a){return this.nod(`<strong style="font-size:90px; background: #ffe2e2; margin: 20px;">${a}</strong>`)},
-		mode(a, b, x){return a == `iPhone` ? x.matchMedia(`(orientation: ${b})`).matches : x.screen.orientation.type === `${b}-primary`},
+		mode(a = `standalone`, b = window){return b.matchMedia(`(display-mode: ${a})`).matches || b.navigator[a] === true},
+		way(a = `portrait`, b = window, x = `orientation`){return this.iOS() ? b.matchMedia(`(${x}: ${a})`).matches : b.screen[x].type === `${a}-primary`},
 		
-		test(a, b = true){
+		test(a, b = true, x = navigator){
 			this.layer(`... checking device`);
 			
 			this.var = a;
-			`serial` in navigator && (b = !1);
+			`serial` in x && (b = !1);
 			z(a.screen.width) >= 760 && (b = !1);
-			this.for(this.null(a.device.platform, navigator), e => !e && (b = !1));
-			(location.hostname == `localhost` ? true : b) ? navigator.onLine ? this.event((x, y) => this.await(a, x, y)) : this.offline() : this.void(`no access!`);
+			this.for(this.null(x, a.device.platform), e => !e && (b = !1));
+			(location.hostname == `localhost` ? true : b) ? x.onLine ? this.event((x, y) => this.await(a, x, y)) : this.offline() : this.void(`no access!`);
 		},
 		/*** End Testing ***/
 		
@@ -153,6 +155,6 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.07.25 
+ * Version: 22.07.28
  * Developed by Emie Chilis
 *************************/
