@@ -2,7 +2,7 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.07.28
+ * Version: 22.08.08
  * Developed by Emie Chilis
 *************************/
 	z = (a) => {return a[a.length - 1]};
@@ -30,17 +30,17 @@
 		200(a, b = this.if(a)){b != `firebaseConfig` && this.of(a, b) && this.do(a)},
 		link(a, b){return a == `init` ? `/__/${b}/${a}.js?useEmulator=true` : `/__/${b}/${this.fire}/${b}-${a}.js`},
 		call(a, b, x = firebase.functions().httpsCallable(a[0])){return x(a[1]).then(e => b(e.data)).catch(e => console.log(e))},
-		do(a){this.layer(`... adding (${a})`); (this.int -= 1) == 0 && this.device.go(e => this.test(this.mix(e, this.device.data())))},
+		do(a){this.layer(`adding (${a})`); (this.int -= 1) == 0 && this.device.go(e => this.test(this.mix(e, this.device.data())))},
 		go(){this.int = 5; this.metatag(this.style); this.for(this.let, e => this.tag(this.link(e, `firebase`)).onload = () => this[2e2](e))},
 		/*** End Firebase ***/
 		
 		/*** Styler ***/
-		layer(a){return $(`.loader`).innerHTML = a},
+		layer(a){return $(`.loader`).innerHTML = `${a} ...`},
 		metatag(a){
 			$(`head`).append(this.nod(`<meta ${a.view}></meta>`));
 			$(`body`).innerHTML = a.xml();
 			this.for([`overhang`, `loader`, `mainicon`], e => this.for(this.style[e], (x, y) => $(`.${e}`).style[x] = y));
-			this.layer(`... starting HiverApp`);
+			this.layer(`starting HiverApp`);
 		},
 		
 		style: {
@@ -91,10 +91,10 @@
 		/*** Signin ***/
 		account(a, b, x){!x.slot && x.anonymous ? this.cloud(a, b) : this.offline()},
 		event(a, b = firebase.auth()){this.reset = b.onAuthStateChanged(e => a(b, e))},
-		await(a, b, x){this.layer(`... signing in`); x ? this.user(a, x) : this.anonymous(a, b)},
+		await(a, b, x){this.layer(`signing in`); x ? this.user(a, x) : this.anonymous(a, b)},
 		oldUSER(a, b){this.open(`mine`, !1, e => e ? this.account(a, b, e[this.key(e)[0]]) : this.cloud(a, b))},
 		anonymous(a, b){return b.signInAnonymously().then(e => this.user(a, e.user)).catch(e => console.log(e))},
-		cloud(a, b){this.layer(`... getting icons`); this.call([`user`, this.mix(a, this.all(b))], e => this.case(e))},
+		cloud(a, b){this.layer(`getting icons`); this.call([`user`, this.mix(a, this.all(b))], e => this.case(e))},
 		user(a, b){this.reset(); indexedDB.databases().then(e => e.length <= 1 ? this.cloud(a, b) : this.oldUSER(a, b)).catch(e => console.log(e))},
 		all(a, b){return {id: a.uid, email: a.email, picture: a.photoURL, time: eval(a.metadata.a), name: a.displayName, phone: a.phoneNumber, anonymous: a.isAnonymous, verified: a.emailVerified}},
 		/*** End Signin ***/
@@ -116,7 +116,7 @@
 		way(a = `portrait`, b = window, x = `orientation`){return this.iOS() ? b.matchMedia(`(${x}: ${a})`).matches : b.screen[x].type === `${a}-primary`},
 		
 		test(a, b = true, x = navigator){
-			this.layer(`... checking device`);
+			this.layer(`checking device`);
 			
 			this.var = a;
 			`serial` in x && (b = !1);
@@ -155,6 +155,6 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.07.28
+ * Version: 22.08.08
  * Developed by Emie Chilis
 *************************/
