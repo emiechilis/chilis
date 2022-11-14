@@ -2,7 +2,7 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.08.09
+ * Version: 22.11.14
  * Developed by Emie Chilis
 *************************/
 	z = (a) => {return a[a.length - 1]};
@@ -107,9 +107,41 @@
 		
 		style: {
 			view: `name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"`,
-			xml(){return`<div id="splashscreen" class="overhang"><div class="mainicon"><svg viewBox="0 0 40 40">${this.svg}</svg></div><span class="loader"></span></div>`},
+			xml(){return`<div id="splashscreen" class="overhang"><div class="mainicon"><div class="whole"><div class="the-round"></div></div></div><span class="loader"></span></div>`},
 			overhang: {top: '0', left: '0', width: '100%', height: '100%', zIndex: '1000', display: 'flex', flexFlow: 'column', position: 'absolute', background: '#3d3f42', textShadow: '#000000 0.3125vw 0px 0.46875vw'},
-			mainicon: {width: '46.875vw', height: '46.875vw', borderRadius: '50%', position: 'relative', margin: 'auto auto 6.25vw', filter: 'drop-shadow(black 1px 0px 2px)', boxShadow: 'inset 1px 1px 3px #000000e0, -1px 0.5px 1px #ffffff8c, 0.5px 0.5px 2px #ffffff38'},
+			
+			mainicon: {
+				width: '46.875vw',
+				height: '46.875vw',
+				borderRadius: '50%',
+				position: 'relative',
+				margin: 'auto',
+				boxShadow: 'rgb(0 0 0 / 88%) 1px 1px 3px inset, #ffffff3d -1px 0.5px 1px, #ffffff47 0.5px 0.5px 2px',
+			},
+			
+			whole: {
+				width: '100%',
+				height: '100%',
+				position: 'relative',
+				borderRadius: 'inherit',
+				border: '6.25vw solid transparent',
+				margin: 'auto',
+			},
+			
+			[`the-round`]: {
+				width: '100%',
+				height: '100%',
+				borderRadius: 'inherit',
+				background: '#0000002b',
+				lineHeight: '34.375vw',
+				textAlign: 'center',
+				position: 'relative',
+				color: '#e5c974',
+				fontSize: '7.5vw',
+				margin: 'auto',
+				fontFamily: 'cursive',
+			},
+			
 			loader: {color: '#e5c974', height: '9.375vw', fontSize: '3.75vw', padding: '0 3.75vw', width: 'fit-content', position: 'relative', margin: '0 auto auto', lineHeight: '9.375vw', borderRadius: '1.875vw', background: '#ffffff12', fontFamily: 'monospace', textTransform: 'capitalize'},
 			svg: `<path fill="#92c8ff" d="M30.9 23.9c-.3-.5-.5-1-.8-1.5-.6-1.1-1.2-2.3-1.8-3.4-.4-.8-1-1.2-1.9-1.2h-5.5c-.7 0-1.2.3-1.5.9l-3 5.7c-.3.6-.3 1.3 0 1.9 1 1.9 2 3.8 2.9 5.7.1.1.1.2.2.4h-4.3c-1.2 0-2-.5-2.6-1.5-.9-1.7-1.8-3.4-2.7-5.2-.7-1.3-1.4-2.7-2.1-4-.6-1.2-.6-2.3 0-3.5 1.6-3 3.2-6.1 4.7-9.1C13 8 13.8 7.5 15 7.5h9.3c1.2 0 2.1.5 2.6 1.6l4.8 9.3c.6 1.1.6 2.2 0 3.2 0 .8-.4 1.5-.8 2.3z"/><path fill="#f3d5a4" d="M19.8 26.8c-.2.4-.2.9 0 1.3.6 1.3 1.3 2.5 2 3.8.2.4.6.6 1.1.6H26.7c.5 0 .8-.2 1-.6.6-1.2 1.3-2.5 1.9-3.7.3-.5.3-1 0-1.4-.3-.5-.6-1.1-.8-1.6-.4-.7-.7-1.4-1.1-2.1-.2-.4-.6-.6-1-.6h-1.6-.1c0 .1.1.1.1.2.4.8.8 1.5 1.2 2.3.1.3.1.5 0 .8-.4.8-.8 1.6-1.2 2.3-.1.2-.3.4-.6.4h-2.3c-.4 0-.6-.2-.8-.5-.2-.5-.5-.9-.7-1.4l-.3-.6c-.2.1-.4.5-.6.8z"/>`,
 		},
@@ -121,6 +153,6 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.08.09
+ * Version: 22.11.14
  * Developed by Emie Chilis
 *************************/
