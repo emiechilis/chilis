@@ -2,7 +2,7 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.11.14
+ * Version: 22.11.15
  * Developed by Emie Chilis
 *************************/
 	z = (a) => {return a[a.length - 1]};
@@ -154,6 +154,6 @@
  * Start
  * HiverGo
  * Copyright 2022
- * Version: 22.11.14
+ * Version: 22.11.15
  * Developed by Emie Chilis
 *************************/
